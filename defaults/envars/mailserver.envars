@@ -1,0 +1,9 @@
+EYEOS_MAILSERVER_LDAP_URL=ldap://ldap.service.consul
+EYEOS_MAILSERVER_LDAP_DN=ou=People,dc=eyeos,dc=com
+EYEOS_MAILSERVER_DOMAIN=open365.io
+EYEOS_MAILSERVER_MANAGER_DN=cn=Manager,dc=eyeos,dc=com
+EYEOS_MAILSERVER_MANAGER_PWD=manager
+MYSQL_MAIL_USER=mail
+MYSQL_MAIL_PWD=p4ssw0rdmy5qlm41l
+MYSQL_MAIL_DB=mail
+MYSQL_HOST=##hostname##

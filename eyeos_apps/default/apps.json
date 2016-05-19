@@ -1,0 +1,134 @@
+{
+  "eyeosApps": [
+    {
+      "appID": "files",
+      "bigIcon": false,
+      "smallIcon": false,
+      "name": "Hub",
+      "tooltip": "Hub",
+      "description": "Hub",
+      "url": "/",
+      "showInDesktop": false,
+      "showInTab": true,
+      "isVdi": false,
+      "type": "eyeos_application",
+      "multipleInstances": true,
+      "settings": {
+        "minSize": {
+          "width": 600,
+          "height": 510
+        }
+      }
+    },
+    {
+      "appID": "mail",
+      "bigIcon": false,
+      "smallIcon": false,
+      "name": "Mail",
+      "tooltip": "Mail",
+      "description": "Mail",
+      "url": "/?EYETHEME_NAME=eyeos-cloud-app&app=%5B%22mail%22%5D",
+      "showInDesktop": false,
+      "showInTab": true,
+      "isVdi": false,
+      "type": "eyeos_application",
+      "multipleInstances": true,
+      "settings": {
+        "minSize": {
+          "width": 600,
+          "height": 510
+        }
+      }
+    },
+    {
+      "appID": "writer",
+      "bigIcon": false,
+      "smallIcon": false,
+      "name": "Writer",
+      "tooltip": "Writer",
+      "description": "Writer",
+      "url": "/?EYETHEME_NAME=eyeos-cloud-app&app=%5B%22writer%22%5D",
+      "showInDesktop": false,
+      "showInTab": true,
+      "isVdi": false,
+      "type": "eyeos_application",
+      "multipleInstances": true,
+      "settings": {
+        "minSize": {
+          "width": 600,
+          "height": 510
+        }
+      }
+    },
+    {
+      "appID": "calc",
+      "bigIcon": false,
+      "smallIcon": false,
+      "name": "Spreadsheet",
+      "tooltip": "Spreadsheet",
+      "description": "Spreadsheet",
+      "url": "/?EYETHEME_NAME=eyeos-cloud-app&app=%5B%22calc%22%5D",
+      "showInDesktop": false,
+      "showInTab": true,
+      "isVdi": false,
+      "type": "eyeos_application",
+      "multipleInstances": true,
+      "settings": {
+        "minSize": {
+          "width": 600,
+          "height": 510
+        }
+      }
+    },
+    {
+      "appID": "impress",
+      "bigIcon": false,
+      "smallIcon": false,
+      "name": "Presentation",
+      "tooltip": "Presentation",
+      "description": "Presentation",
+      "url": "/?EYETHEME_NAME=eyeos-cloud-app&app=%5B%22presentation%22%5D",
+      "showInDesktop": false,
+      "showInTab": true,
+      "isVdi": false,
+      "type": "eyeos_application",
+      "multipleInstances": true,
+      "settings": {
+        "minSize": {
+          "width": 600,
+          "height": 510
+        }
+      }
+    },
+    {
+      "appID": "filesync",
+      "bigIcon": false,
+      "smallIcon": false,
+      "name": "File sync",
+      "tooltip": "File sync",
+      "description": "File sync",
+      "url": "https://open365.io/download.html",
+      "showInDesktop": false,
+      "showInTab": true,
+      "isVdi": false,
+      "type": "eyeos_application",
+      "multipleInstances": true,
+      "settings": {
+        "minSize": {
+          "width": 600,
+          "height": 510
+        }
+      }
+    }
+  ],
+  "controlPanelApps": [
+    {
+      "appID": "profiles",
+      "name": "Profiles",
+      "icon": "assets/icons/workgroups.svg",
+      "link": "profile_client/",
+      "urlkey": "profile_client",
+      "type": 1
+    }
+  ]
+}

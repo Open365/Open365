@@ -1,0 +1,2 @@
+class GitError(Exception):
+    pass

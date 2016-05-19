@@ -1,0 +1,2 @@
+class SubcommandNotFoundError(Exception):
+    pass

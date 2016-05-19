@@ -1,0 +1,16 @@
+#!/usr/bin/env python3
+
+import sys
+import os
+from lib.SubcommandRouter import SubcommandRouter
+
+
+if os.geteuid() != 0:
+    print('This program has to be executed as root!')
+    exit(0)
+
+if len(sys.argv) < 2:
+    sys.argv.append('help')
+
+router = SubcommandRouter()
+router.route(*sys.argv[1:])

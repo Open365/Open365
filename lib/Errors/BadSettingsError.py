@@ -1,0 +1,2 @@
+class BadSettingsError(Exception):
+    pass

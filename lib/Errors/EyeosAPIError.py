@@ -1,0 +1,2 @@
+class EyeosAPIError(Exception):
+    pass

@@ -1,0 +1,2 @@
+class NotASymlink(Exception):
+    pass
