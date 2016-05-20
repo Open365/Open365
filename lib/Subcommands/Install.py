@@ -207,7 +207,7 @@ Are you sure you want to continue?"""
 
     def get_docker_ip(self):
         docker_ip = subprocess.check_output("ip route | grep docker0 | awk {'print $9'}", shell=True)
-        docker_ip = docker_ip.decode("utf-8").rstrip('\n')
+        docker_ip = docker_ip.decode("utf-8").strip('\n')
         if not docker_ip:
             docker_ip = '172.17.0.1'
         return docker_ip
