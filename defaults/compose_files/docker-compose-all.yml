@@ -7,7 +7,8 @@
     net: host
     restart: always
 applications:
-    dns: 127.0.0.1
+    dns:
+    - 127.0.0.1
     env_file:
     - ../../envars/general.envars
     environment:
@@ -21,7 +22,8 @@ applications:
     - /var/run/docker.sock:/var/run/docker.sock
     - ##RESOLV_PATH##:/resolv.conf
 appservice:
-    dns: 127.0.0.1
+    dns:
+    - 127.0.0.1
     env_file:
     - ../../envars/general.envars
     - ../../envars/appservice.envars
@@ -43,7 +45,8 @@ appservicecleaner:
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
 authentication:
-    dns: 127.0.0.1
+    dns:
+    - 127.0.0.1
     env_file:
     - ../../envars/general.envars
     - ../../envars/authentication.envars
@@ -60,7 +63,8 @@ authentication:
     - ##DOCKER_VOLS##/license:/var/service/license
 dnsmasq:
     command: eyeos-run-server --serf 'sleep infinity'
-    dns: 127.0.0.1
+    dns: 
+    - 127.0.0.1
     env_file:
     - ../../envars/general.envars
     extra_hosts:
@@ -76,7 +80,8 @@ dnsmasq:
     - /var/run/docker.sock:/var/run/docker.sock
     - ##RESOLV_PATH##:/resolv.conf
 eyeosChat:
-    dns: 127.0.0.1
+    dns: 
+    - 127.0.0.1
     env_file:
     - ../../envars/general.envars
     environment:
@@ -100,7 +105,8 @@ eyeosLogin:
     - ../../envars/eyeoslogin.envars
     image: open365/eyeos-login:latest
 filesCdnServer:
-    dns: 127.0.0.1
+    dns: 
+    - 127.0.0.1
     env_file:
     - ../../envars/general.envars
     environment:
@@ -117,7 +123,8 @@ filesCdnServer:
     - ##RAW_FS_PATH##:/mnt/rawFS
     - ##RESOLV_PATH##:/resolv.conf
 heartbeat:
-    dns: 127.0.0.1
+    dns: 
+    - 127.0.0.1
     env_file:
     - ../../envars/general.envars
     environment:
@@ -131,7 +138,8 @@ heartbeat:
     - /var/run/docker.sock:/var/run/docker.sock
     - ##RESOLV_PATH##:/resolv.conf
 httpRelayServer:
-    dns: 127.0.0.1
+    dns: 
+    - 127.0.0.1
     env_file:
     - ../../envars/general.envars
     environment:
@@ -146,7 +154,8 @@ httpRelayServer:
     - /var/run/docker.sock:/var/run/docker.sock
     - ##RESOLV_PATH##:/resolv.conf
 httpToBus:
-    dns: 127.0.0.1
+    dns: 
+    - 127.0.0.1
     env_file:
     - ../../envars/general.envars
     environment:
@@ -162,7 +171,8 @@ httpToBus:
     - /var/run/docker.sock:/var/run/docker.sock
     - ##RESOLV_PATH##:/resolv.conf
 ldap:
-    dns: 127.0.0.1
+    dns:
+    - 127.0.0.1
     env_file:
     - ../../envars/general.envars
     environment:
@@ -179,7 +189,8 @@ ldap:
     - ##DATA_PATH##/ldap:/var/lib/ldap
     - /var/run/docker.sock:/var/run/docker.sock
 mailserver:
-    dns: 127.0.0.1
+    dns: 
+    - 127.0.0.1
     env_file:
     - ../../envars/general.envars
     - ../../envars/mailserver.envars
@@ -201,7 +212,8 @@ mailserver:
     - ##RESOLV_PATH##:/resolv.conf
     - ##RAW_FS_PATH##:/mnt/rawFS
 mongodb:
-    dns: 127.0.0.1
+    dns: 
+    - 127.0.0.1
     env_file:
     - ../../envars/general.envars
     image: open365/mongo-discovery:latest
@@ -214,7 +226,8 @@ mongodb:
     - /var/run/docker.sock:/var/run/docker.sock
     - ##DATA_PATH##/db:/data/db
 mysql:
-    dns: 127.0.0.1
+    dns: 
+    - 127.0.0.1
     env_file:
     - ../../envars/general.envars
     - ../../envars/mysql.envars
@@ -235,7 +248,8 @@ open365Office:
     command: sleep infinity
     image: open365/open365-office:latest
 presenceService:
-    dns: 127.0.0.1
+    dns: 
+    - 127.0.0.1
     env_file:
     - ../../envars/general.envars
     environment:
@@ -249,7 +263,8 @@ presenceService:
     - /var/run/docker.sock:/var/run/docker.sock
     - ##RESOLV_PATH##:/resolv.conf
 principalService:
-    dns: 127.0.0.1
+    dns: 
+    - 127.0.0.1
     env_file:
     - ../../envars/general.envars
     - ../../envars/principalservice.envars
@@ -266,7 +281,8 @@ principalService:
     - ##RAW_FS_PATH##:/mnt/rawFS
     - ##RESOLV_PATH##:/resolv.conf
 proxy:
-    dns: 127.0.0.1
+    dns: 
+    - 127.0.0.1
     env_file:
     - ../../envars/general.envars
     - ../../envars/proxy.envars
@@ -292,7 +308,8 @@ proxy:
     extra_hosts:
     - signup.service.consul:##docker0##
 rabbitmq:
-    dns: 127.0.0.1
+    dns: 
+    - 127.0.0.1
     env_file:
     - ../../envars/general.envars
     environment:
@@ -312,7 +329,8 @@ rabbitmq:
     - /var/run/docker.sock:/var/run/docker.sock
     - ##HOSTS##:/hosts/
 rabbitmqAuth:
-    dns: 127.0.0.1
+    dns: 
+    - 127.0.0.1
     env_file:
     - ../../envars/general.envars
     environment:
@@ -327,7 +345,8 @@ rabbitmqAuth:
     - /var/run/docker.sock:/var/run/docker.sock
     - ##RESOLV_PATH##:/resolv.conf
 redis:
-    dns: 127.0.0.1
+    dns: 
+    - 127.0.0.1
     env_file:
     - ../../envars/general.envars
     image: open365/redis-discovery:latest
@@ -339,7 +358,8 @@ redis:
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
 seafileServer:
-    dns: 127.0.0.1
+    dns: 
+    - 127.0.0.1
     env_file:
     - ../../envars/general.envars
     - ../../envars/seafileServer.envars
@@ -355,7 +375,8 @@ seafileServer:
     - ##DATA_PATH##/seafileRawData:/opt/seafile/seafile-data
     - ##RESOLV_PATH##:/resolv.conf
 staticCache:
-    dns: 127.0.0.1
+    dns: 
+    - 127.0.0.1
     env_file:
     - ../../envars/general.envars
     - ../../envars/staticCache.envars
@@ -369,7 +390,8 @@ staticCache:
     - /var/run/docker.sock:/var/run/docker.sock
     - ##RESOLV_PATH##:/resolv.conf
 sync:
-    dns: 127.0.0.1
+    dns: 
+    - 127.0.0.1
     environment:
         EYEOS_RUN_SERVER_RESOLV: '/open365/resolv.conf'
     env_file:
@@ -382,7 +404,8 @@ sync:
     volumes:
     - ##RESOLV_PATH##:/open365/resolv.conf
 userGuestStatusPollingService:
-    dns: 127.0.0.1
+    dns: 
+    - 127.0.0.1
     env_file:
     - ../../envars/general.envars
     environment:
@@ -396,7 +419,8 @@ userGuestStatusPollingService:
     - /var/run/docker.sock:/var/run/docker.sock
     - ##RESOLV_PATH##:/resolv.conf
 websockify:
-    dns: 127.0.0.1
+    dns:
+    - 127.0.0.1
     env_file:
     - ../../envars/general.envars
     - ../../envars/websockify.envars
