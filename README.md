@@ -21,6 +21,7 @@ run Open365 in your computer.
  $ pip3 install ldap3
  $ apt-get install libmysqlclient-dev
  $ pip3 install mysqlclient 
+ $ pip3 install requests
 
 ```
 
