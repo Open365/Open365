@@ -68,7 +68,7 @@ dnsmasq:
     env_file:
     - ../../envars/general.envars
     extra_hosts:
-    - signup.service.consul: ##docker0##
+    - signup.service.consul:##docker0##
     image: open365/dnsmasq:latest
     ports:
     - 7946/tcp
@@ -306,7 +306,7 @@ proxy:
     - eyeosLogin
     - eyeosDesktop
     extra_hosts:
-    - signup.service.consul: ##docker0##
+    - signup.service.consul:##docker0##
 rabbitmq:
     dns: 
     - 127.0.0.1
