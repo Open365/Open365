@@ -3,7 +3,7 @@ Open365 Installer
 
 # Overview
 
-This is the main Open365 installer. It installs all the required components to
+This is the main [Open365](https://open365.io/) installer. It installs all the required components to
 run Open365 in your computer.
 
 # Requirements
