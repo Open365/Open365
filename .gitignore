@@ -1,5 +1,6 @@
 *.pyc
 .idea
+settings.cfg
 environments/envars
 environments/compose_files/latest/docker-compose-all.yml
 environments/compose_files/latest/hosts/hosts.serf*
