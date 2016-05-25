@@ -3,6 +3,7 @@ import fileinput
 import os
 import re
 import subprocess
+import json
 
 from lib.DockerComposeExecutor import DockerComposeExecutor
 from lib.Settings import Settings
@@ -77,8 +78,10 @@ Are you sure you want to continue?"""
         if self.is_an_ip(hostname):
             create_user_domain, user_domain = self.ask_for_user_domain()
 
+        extra_args = self.get_docker_extra_args()
+
         self.key_manager.generate_keys()
-        self.replace_tags(hostname)
+        self.replace_tags(hostname, extra_args)
 
         file_path = os.getcwd() + '/environments/compose_files/latest/docker-compose-all.yml'
         docker_compose = DockerComposeExecutor(file_path)
@@ -138,10 +141,30 @@ Are you sure you want to continue?"""
 
         return False, None
 
-    def replace_tags(self, hostname):
+    def get_docker_extra_args(self):
+        version = self.get_docker_version()
+        if version >= (1, 10, 0):
+            print("We detected you are using a newer version of Docker. Unfortunately, Open365 isn't yet fully")
+            print("compatible with docker versions newer than 1.9. A workaround involves running the virtualized")
+            print("applications in privileged mode. Do you want to launch the applications in privileged mode?")
+            print("This is potentially unsafe, specially if you are going to give accounts to third parties.")
+            if QueryYesNo("You won't be able to save documents edited in virtual applications."):
+                return ["--privileged"]
+        return []
+
+    def get_docker_version(self):
+        output = subprocess.check_output(['docker', '--version']).decode('utf-8')
+        match = re.search('version\s+(\d+\.\d+\.\d+)', output)
+        if not match:
+            raise RuntimeError("Cannot get version of docker from output: " + "\\n".join(output.split("\n")))
+        return tuple(int(n) for n in  match.group(1).split('.'))
+
+    def replace_tags(self, hostname, extra_args):
 
         self.prepare_defaults()
         files = self.get_files()
+
+        extra_args = json.dumps(extra_args)
 
         private_pem = self.key_manager.get_private_pem_base64()
         public_pem = self.key_manager.get_public_pem_base64()
@@ -168,6 +191,8 @@ Are you sure you want to continue?"""
                         print(line.replace('##PRIVATE_PEM##', private_pem), end='')
                     elif '##PUBLIC_PEM##' in line:
                         print(line.replace('##PUBLIC_PEM##', public_pem), end='')
+                    elif '##DOCKER_EXTRA_ARGS##' in line:
+                        print(line.replace('##DOCKER_EXTRA_ARGS##', extra_args), end='')
                     else:
                         print(line, end='')
 
