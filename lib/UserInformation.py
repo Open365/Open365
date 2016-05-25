@@ -21,7 +21,7 @@ class UserInformation:
         self.surname = input('Surname: ')
         if not self.surname:
             self.surname = 'default'
-        self.password = getpass.getpass('Passowrd: ')
+        self.password = getpass.getpass('Password: ')
         self.repassword = getpass.getpass('Reenter password: ')
         while self.password != self.repassword:
             print('Password does not match, try again...')
@@ -41,7 +41,7 @@ class UserInformation:
         self.firstname = 'eyeos'
         self.surname = 'eyeos'
         print('Enter admin password')
-        self.password = getpass.getpass('Passowrd: ')
+        self.password = getpass.getpass('Password: ')
         self.repassword = getpass.getpass('Reenter password: ')
         while self.password != self.repassword:
             print('Password does not match, try again...')
