@@ -169,6 +169,7 @@ Are you sure you want to continue?"""
         private_pem = self.key_manager.get_private_pem_base64()
         public_pem = self.key_manager.get_public_pem_base64()
         docker_ip = self.get_docker_ip()
+        docker_version = self.get_docker_server_version()
 
         for file in files:
             with fileinput.FileInput(file, inplace=True) as f:
@@ -193,6 +194,8 @@ Are you sure you want to continue?"""
                         print(line.replace('##PUBLIC_PEM##', public_pem), end='')
                     elif '##DOCKER_EXTRA_ARGS##' in line:
                         print(line.replace('##DOCKER_EXTRA_ARGS##', extra_args), end='')
+                    elif '##DOCKER_VERSION##' in line:
+                        print(line.replace('##DOCKER_VERSION##', docker_version), end='')
                     else:
                         print(line, end='')
 
@@ -236,3 +239,13 @@ Are you sure you want to continue?"""
         if not docker_ip:
             docker_ip = '172.17.0.1'
         return docker_ip
+
+    def get_docker_server_version(self):
+        docker_version = subprocess.check_output("docker version --format '{{.Server.Version}}'", shell=True)
+        docker_version = docker_version.decode("utf-8").strip('\n')
+        if not docker_version:
+            docker_version = '1.8'
+
+        docker_version_list = docker_version.split('.')[0:2]
+        docker_version = '.'.join(docker_version_list)
+        return docker_version

@@ -12,6 +12,7 @@ applications:
     env_file:
     - ../../envars/general.envars
     environment:
+    - EYEOS_RUN_SERVER_RESOLV=/open365/resolv.conf
     - EYEOS_DEVELOPMENT_MODE=false
     image: open365/eyeos-application:latest
     ports:
@@ -20,7 +21,7 @@ applications:
     restart: always
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
-    - ##RESOLV_PATH##:/resolv.conf
+    - ##RESOLV_PATH##:/open365/resolv.conf
 appservice:
     dns:
     - 127.0.0.1
@@ -28,6 +29,7 @@ appservice:
     - ../../envars/general.envars
     - ../../envars/appservice.envars
     environment:
+    - EYEOS_RUN_SERVER_RESOLV=/open365/resolv.conf
     - EYEOS_DEVELOPMENT_MODE=false
     image: open365/eyeos-appservice:latest
     ports:
@@ -35,9 +37,9 @@ appservice:
     - 7946/udp
     restart: always
     volumes:
-    - resolv.conf:/resolv.conf
-    - ##DOCKER_VOLS##/docker-swarm:/root/.docker
     - /var/run/docker.sock:/var/run/docker.sock
+    - resolv.conf:/open365/resolv.conf
+    - ##DOCKER_VOLS##/docker-swarm:/root/.docker
     - ##DOCKER_VOLS##/multidocker-info:/var/service/multidocker-info
 appservicecleaner:
     command: /var/service/src/appcleaner.sh
@@ -52,21 +54,24 @@ authentication:
     - ../../envars/authentication.envars
     environment:
     - EYEOS_DEVELOPMENT_MODE=false
+    - EYEOS_RUN_SERVER_RESOLV=/open365/resolv.conf
     image: open365/eyeos-authentication:latest
     ports:
     - 7946/tcp
     - 7946/udp
     restart: always
     volumes:
+    - ##RESOLV_PATH##:/open365/resolv.conf
     - /var/run/docker.sock:/var/run/docker.sock
-    - ##RESOLV_PATH##:/resolv.conf
     - ##DOCKER_VOLS##/license:/var/service/license
 dnsmasq:
-    command: eyeos-run-server --serf 'sleep infinity'
+    command: eyeos-run-server --serf '/tmp/sleep-infinity.sh'
     dns: 
     - 127.0.0.1
     env_file:
     - ../../envars/general.envars
+    environment:
+    - EYEOS_RUN_SERVER_RESOLV=/open365/resolv.conf
     extra_hosts:
     - signup.service.consul:##docker0##
     image: open365/dnsmasq:latest
@@ -78,7 +83,7 @@ dnsmasq:
     restart: always
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
-    - ##RESOLV_PATH##:/resolv.conf
+    - ##RESOLV_PATH##:/open365/resolv.conf
 eyeosChat:
     dns: 
     - 127.0.0.1
@@ -110,6 +115,7 @@ filesCdnServer:
     env_file:
     - ../../envars/general.envars
     environment:
+    - EYEOS_RUN_SERVER_RESOLV=/open365/resolv.conf
     - EYEOS_DEVELOPMENT_MODE=false
     image: open365/eyeos-files-cdn-server:latest
     ports:
@@ -121,7 +127,7 @@ filesCdnServer:
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
     - ##RAW_FS_PATH##:/mnt/rawFS
-    - ##RESOLV_PATH##:/resolv.conf
+    - ##RESOLV_PATH##:/open365/resolv.conf
 heartbeat:
     dns: 
     - 127.0.0.1
@@ -144,6 +150,7 @@ httpRelayServer:
     - ../../envars/general.envars
     environment:
     - EYEOS_DEVELOPMENT_MODE=false
+    - EYEOS_RUN_SERVER_RESOLV=/open365/resolv.conf
     image: open365/eyeos-http-relay-server:latest
     ports:
     - 7946/tcp
@@ -152,7 +159,7 @@ httpRelayServer:
     restart: always
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
-    - ##RESOLV_PATH##:/resolv.conf
+    - ##RESOLV_PATH##:/open365/resolv.conf
 httpToBus:
     dns: 
     - 127.0.0.1
@@ -160,6 +167,7 @@ httpToBus:
     - ../../envars/general.envars
     environment:
     - EYEOS_DEVELOPMENT_MODE=false
+    - EYEOS_RUN_SERVER_RESOLV=/open365/resolv.conf
     image: open365/eyeos-httptobusserver:latest
     ports:
     - 7946/tcp
@@ -169,7 +177,15 @@ httpToBus:
     restart: always
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
-    - ##RESOLV_PATH##:/resolv.conf
+    - ##RESOLV_PATH##:/open365/resolv.conf
+jitsi:
+    dns:
+    - 127.0.0.1
+    env_file:
+    - ../../envars/jitsi.envars
+    image: open365/docker-jitsi:latest
+    privileged: true
+    restart: always
 ldap:
     dns:
     - 127.0.0.1
@@ -254,6 +270,7 @@ presenceService:
     - ../../envars/general.envars
     environment:
     - EYEOS_DEVELOPMENT_MODE=false
+    - EYEOS_RUN_SERVER_RESOLV=/open365/resolv.conf
     image: open365/eyeos-presence-service:latest
     ports:
     - 7946/tcp
@@ -261,7 +278,7 @@ presenceService:
     restart: always
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
-    - ##RESOLV_PATH##:/resolv.conf
+    - ##RESOLV_PATH##:/open365/resolv.conf
 principalService:
     dns: 
     - 127.0.0.1
@@ -269,6 +286,7 @@ principalService:
     - ../../envars/general.envars
     - ../../envars/principalservice.envars
     environment:
+    - EYEOS_RUN_SERVER_RESOLV=/open365/resolv.conf
     - EYEOS_DEVELOPMENT_MODE=false
     image: open365/eyeos-principalservice:latest
     ports:
@@ -279,7 +297,7 @@ principalService:
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
     - ##RAW_FS_PATH##:/mnt/rawFS
-    - ##RESOLV_PATH##:/resolv.conf
+    - ##RESOLV_PATH##:/open365/resolv.conf
 proxy:
     dns: 
     - 127.0.0.1
@@ -287,7 +305,10 @@ proxy:
     - ../../envars/general.envars
     - ../../envars/proxy.envars
     environment:
+    - EYEOS_RUN_SERVER_RESOLV=/open365/resolv.conf
     - EYEOS_DEVELOPMENT_MODE=false
+    extra_hosts:
+    - signup.service.consul:##docker0##
     image: open365/eyeos-proxy:latest
     ports:
     - 7946/tcp
@@ -301,17 +322,16 @@ proxy:
     - ##RAW_FS_PATH##:/mnt/rawFS
     - ##DOCKER_VOLS##/ssl:/etc/nginx/certificate
     - ##DOCKER_VOLS##/signup:/usr/share/nginx/html/signup
-    - ##RESOLV_PATH##:/resolv.conf
+    - ##RESOLV_PATH##:/open365/resolv.conf
     volumes_from:
     - eyeosLogin
     - eyeosDesktop
-    extra_hosts:
-    - signup.service.consul:##docker0##
 rabbitmq:
     dns: 
     - 127.0.0.1
     env_file:
     - ../../envars/general.envars
+    - ../../envars/rabbitmq.envars
     environment:
     - EYEOS_DEVELOPMENT_MODE=false
     - DISCOVERY_HOSTS_FILE_PATH=/hosts/hosts.serf
@@ -380,6 +400,8 @@ staticCache:
     env_file:
     - ../../envars/general.envars
     - ../../envars/staticCache.envars
+    environment:
+    - EYEOS_RUN_SERVER_RESOLV=/open365/resolv.conf
     image: open365/eyeos-static-cache:latest
     ports:
     - 7946/tcp
@@ -388,16 +410,16 @@ staticCache:
     restart: always
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
-    - ##RESOLV_PATH##:/resolv.conf
+    - ##RESOLV_PATH##:/open365/resolv.conf
 sync:
     dns: 
     - 127.0.0.1
-    environment:
-        EYEOS_RUN_SERVER_RESOLV: '/open365/resolv.conf'
     env_file:
     - ../../envars/general.envars
     - ../../envars/seafileServer.envars
     - ../../envars/seafileSync.envars
+    environment:
+        EYEOS_RUN_SERVER_RESOLV: /open365/resolv.conf
     image: open365/eyeos-sync:latest
     privileged: true
     restart: always
@@ -409,6 +431,7 @@ userGuestStatusPollingService:
     env_file:
     - ../../envars/general.envars
     environment:
+    - EYEOS_RUN_SERVER_RESOLV=/open365/resolv.conf
     - EYEOS_DEVELOPMENT_MODE=false
     image: open365/eyeos-user-guest-status-polling-service:latest
     ports:
@@ -417,13 +440,15 @@ userGuestStatusPollingService:
     restart: always
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
-    - ##RESOLV_PATH##:/resolv.conf
+    - ##RESOLV_PATH##:/open365/resolv.conf
 websockify:
     dns:
     - 127.0.0.1
     env_file:
     - ../../envars/general.envars
     - ../../envars/websockify.envars
+    environment:
+    - EYEOS_RUN_SERVER_RESOLV=/open365/resolv.conf
     image: open365/eyeos-websockify:latest
     ports:
     - 7946/tcp
@@ -434,4 +459,4 @@ websockify:
     restart: always
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
-    - ##RESOLV_PATH##:/resolv.conf
+    - ##RESOLV_PATH##:/open365/resolv.conf
