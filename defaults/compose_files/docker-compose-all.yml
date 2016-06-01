@@ -38,7 +38,7 @@ appservice:
     restart: always
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
-    - resolv.conf:/open365/resolv.conf
+    - ##RESOLV_PATH##:/open365/resolv.conf
     - ##DOCKER_VOLS##/docker-swarm:/root/.docker
     - ##DOCKER_VOLS##/multidocker-info:/var/service/multidocker-info
 appservicecleaner:
