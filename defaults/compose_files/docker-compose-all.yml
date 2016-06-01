@@ -91,6 +91,7 @@ eyeosChat:
     - ../../envars/general.envars
     environment:
     - EYEOS_DEVELOPMENT_MODE=false
+    - EYEOS_RUN_SERVER_RESOLV=/open365/resolv.conf
     image: open365/eyeos-eyeos-chat:latest
     ports:
     - 7946/tcp
@@ -98,7 +99,7 @@ eyeosChat:
     restart: always
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
-    - ##RESOLV_PATH##:/resolv.conf
+    - ##RESOLV_PATH##:/open365/resolv.conf
 eyeosDesktop:
     env_file:
     - ../../envars/general.envars
