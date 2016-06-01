@@ -9,30 +9,27 @@ run Open365 in your computer.
 # Requirements
 
 - Docker
-- Docker-compose
+- Docker-compose (1.3 or higher)
 - Python3
 
 ### Python packages
 - Debian / Ubuntu:
 
 ```
-#!bash
- $ pip3 install pymongo
- $ pip3 install ldap3
  $ apt-get install libmysqlclient-dev
  $ pip3 install mysqlclient 
+ $ pip3 install pymongo
+ $ pip3 install ldap3
  $ pip3 install requests
-
 ```
 
 - Fedora
 
 ```
-#!bash
  $ pip3 install pymongo
  $ pip3 install ldap3
- $ pip3 install mysql-python3
-
+ $ pip3 install requests
+ $ yum install python3-mysql
 ```
 
 We require SELinux to be disabled.
