@@ -128,21 +128,6 @@ filesCdnServer:
     - /var/run/docker.sock:/var/run/docker.sock
     - ##RAW_FS_PATH##:/mnt/rawFS
     - ##RESOLV_PATH##:/open365/resolv.conf
-heartbeat:
-    dns: 
-    - 127.0.0.1
-    env_file:
-    - ../../envars/general.envars
-    environment:
-    - EYEOS_DEVELOPMENT_MODE=false
-    image: open365/eyeos-heartbeat:latest
-    ports:
-    - 7946/tcp
-    - 7946/udp
-    restart: always
-    volumes:
-    - /var/run/docker.sock:/var/run/docker.sock
-    - ##RESOLV_PATH##:/resolv.conf
 httpRelayServer:
     dns: 
     - 127.0.0.1
