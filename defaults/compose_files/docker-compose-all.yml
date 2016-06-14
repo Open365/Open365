@@ -179,6 +179,7 @@ ldap:
     - ../../envars/general.envars
     environment:
     - EYEOS_DEVELOPMENT_MODE=false
+    - EYEOS_RUN_SERVER_RESOLV=/open365/resolv.conf
     - LDAP_LOG_LEVEL=256
     - LOG_CONNECTION_MAX_RETRY=1000
     image: open365/ldap-discovery:latest
@@ -190,6 +191,7 @@ ldap:
     volumes:
     - ##DATA_PATH##/ldap:/var/lib/ldap
     - /var/run/docker.sock:/var/run/docker.sock
+    - ##RESOLV_PATH##:/open365/resolv.conf
 mailserver:
     dns: 
     - 127.0.0.1
@@ -219,6 +221,8 @@ mongodb:
     env_file:
     - ../../envars/general.envars
     image: open365/mongo-discovery:latest
+    environment:
+    - EYEOS_RUN_SERVER_RESOLV=/open365/resolv.conf
     ports:
     - 0.0.0.0:27017:27017
     - 7946/tcp
@@ -227,6 +231,7 @@ mongodb:
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
     - ##DATA_PATH##/db:/data/db
+    - ##RESOLV_PATH##:/open365/resolv.conf
 mysql:
     dns: 
     - 127.0.0.1
@@ -320,6 +325,7 @@ rabbitmq:
     - ../../envars/rabbitmq.envars
     environment:
     - EYEOS_DEVELOPMENT_MODE=false
+    - EYEOS_RUN_SERVER_RESOLV=/open365/resolv.conf
     - DISCOVERY_HOSTS_FILE_PATH=/hosts/hosts.serf
     - RABBITMQ_AUTH_HOST=##docker0##
     image: open365/rabbitmq-discovery:latest
@@ -333,6 +339,7 @@ rabbitmq:
     restart: always
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
+    - ##RESOLV_PATH##:/open365/resolv.conf
     - ##HOSTS##:/hosts/
 rabbitmqAuth:
     dns: 
@@ -341,7 +348,8 @@ rabbitmqAuth:
     - ../../envars/general.envars
     environment:
     - EYEOS_RABBITMQ_AUTH_BACKEND_HTTP_BIND_ADDRESS=0.0.0.0
-    image: open365/eyeos-rabbitmq-auth-backend-http:latest
+    - EYEOS_RUN_SERVER_RESOLV=/open365/resolv.conf
+    image: open365-experimental/eyeos-rabbitmq-auth-backend-http:latest
     ports:
     - 7946/tcp
     - 7946/udp
@@ -349,13 +357,16 @@ rabbitmqAuth:
     restart: always
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
-    - ##RESOLV_PATH##:/resolv.conf
+    - ##RESOLV_PATH##:/open365/resolv.conf
 redis:
     dns: 
     - 127.0.0.1
     env_file:
     - ../../envars/general.envars
     image: open365/redis-discovery:latest
+    environment:
+    - DOCKER_FIX_ISSUE_14203=true
+    - EYEOS_RUN_SERVER_RESOLV=/open365/resolv.conf
     ports:
     - 7946/tcp
     - 7946/udp
@@ -363,6 +374,7 @@ redis:
     restart: always
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
+    - ##RESOLV_PATH##:/open365/resolv.conf
 seafileServer:
     dns: 
     - 127.0.0.1
@@ -371,6 +383,8 @@ seafileServer:
     - ../../envars/seafileServer.envars
     - ../../envars/mysql.envars
     image: open365/docker-seafile:latest
+    environment:
+    - EYEOS_RUN_SERVER_RESOLV=/open365/resolv.conf
     ports:
     - 0.0.0.0:8000:8000
     - 0.0.0.0:8080:8080
@@ -379,7 +393,7 @@ seafileServer:
     restart: always
     volumes:
     - ##DATA_PATH##/seafileRawData:/opt/seafile/seafile-data
-    - ##RESOLV_PATH##:/resolv.conf
+    - ##RESOLV_PATH##:/open365/resolv.conf
 staticCache:
     dns: 
     - 127.0.0.1
@@ -405,8 +419,8 @@ sync:
     - ../../envars/seafileServer.envars
     - ../../envars/seafileSync.envars
     environment:
-        EYEOS_RUN_SERVER_RESOLV: /open365/resolv.conf
     image: open365/eyeos-sync:latest
+    - EYEOS_RUN_SERVER_RESOLV=/open365/resolv.conf
     privileged: true
     restart: always
     volumes:
