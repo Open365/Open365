@@ -254,6 +254,24 @@ open365Mail:
 open365Office:
     command: sleep infinity
     image: open365/open365-office:latest
+pimServer:
+    dns:
+    - 127.0.0.1
+    env_file:
+    - ../../envars/general.envars
+    - ../../envars/pimserver.envars
+    environment:
+    - EYEOS_RUN_SERVER_RESOLV=/open365/resolv.conf
+    image: 'open365-experimental/pim-server:latest'
+    ports:
+    - 0.0.0.0:5232:5232
+    - 7946/tcp
+    - 7946/udp
+    restart: always
+    volumes:
+    - ##RESOLV_PATH##:/open365/resolv.conf
+    - '/mnt/data/pim:/data/collections'
+    - /var/run/docker.sock:/var/run/docker.sock
 presenceService:
     dns: 
     - 127.0.0.1
