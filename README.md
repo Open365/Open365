@@ -16,7 +16,7 @@ run Open365 in your computer.
 - Debian / Ubuntu:
 
 ```
- $ apt-get install libmysqlclient-dev
+ $ apt-get install libmysqlclient-dev python3-dev
  $ pip3 install mysqlclient 
  $ pip3 install pymongo
  $ pip3 install ldap3
