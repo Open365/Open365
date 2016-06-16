@@ -186,6 +186,7 @@ jitsi:
     dns:
     - 127.0.0.1
     env_file:
+    - ../../envars/general.envars
     - ../../envars/jitsi.envars
     image: open365experimental/docker-jitsi:latest
     privileged: true
