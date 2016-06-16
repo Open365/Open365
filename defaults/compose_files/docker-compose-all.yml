@@ -1,11 +1,3 @@
-0serviceDiscovery:
-    env_file:
-    - ../../envars/general.envars
-    environment:
-    - SERF_JOIN_ADDRESS
-    image: open365experimental/service-discovery:latest
-    net: host
-    restart: always
 applications:
     dns:
     - 127.0.0.1
@@ -74,26 +66,6 @@ authentication:
     - rabbitmq:rabbit.service.consul
     - mongodb:mongo.service.consul
     - ldap:ldap.service.consul
-dnsmasq:
-    command: eyeos-run-server --serf '/tmp/sleep-infinity.sh'
-    dns:
-    - 127.0.0.1
-    env_file:
-    - ../../envars/general.envars
-    environment:
-    - EYEOS_RUN_SERVER_RESOLV=/open365/resolv.conf
-    extra_hosts:
-    - signup.service.consul:##docker0##
-    image: open365experimental/dnsmasq:latest
-    ports:
-    - 7946/tcp
-    - 7946/udp
-    - ##docker0##:5300:53/udp
-    - ##docker0##:5300:53/tcp
-    restart: always
-    volumes:
-    - /var/run/docker.sock:/var/run/docker.sock
-    - ##RESOLV_PATH##:/open365/resolv.conf
 eyeosChat:
     dns:
     - 127.0.0.1
