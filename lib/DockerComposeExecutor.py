@@ -31,6 +31,7 @@ class DockerComposeExecutor:
         try:
             new_env = os.environ.copy()
             new_env['DOCKER_CLIENT_TIMEOUT'] = '300'
+            new_env['COMPOSE_HTTP_TIMEOUT'] = '300'
             self.subprocess.check_call(args, cwd=self.cwd, env=new_env)
             print("Command {0} exited successfully".format(args))
         except global_subprocess.CalledProcessError as e:
