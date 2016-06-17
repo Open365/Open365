@@ -6,7 +6,7 @@ applications:
     environment:
     - EYEOS_RUN_SERVER_RESOLV=/open365/resolv.conf
     - EYEOS_DEVELOPMENT_MODE=false
-    image: open365experimental/eyeos-application:latest
+    image: open365/eyeos-application:latest
     ports:
     - 7946/tcp
     - 7946/udp
@@ -26,7 +26,7 @@ appservice:
     environment:
     - EYEOS_RUN_SERVER_RESOLV=/open365/resolv.conf
     - EYEOS_DEVELOPMENT_MODE=false
-    image: open365experimental/eyeos-appservice:latest
+    image: open365/eyeos-appservice:latest
     ports:
     - 7946/tcp
     - 7946/udp
@@ -41,7 +41,7 @@ appservice:
     - mongodb:mongo.service.consul
 appservicecleaner:
     command: /var/service/src/appcleaner.sh
-    image: open365experimental/eyeos-appservice:latest
+    image: open365/eyeos-appservice:latest
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
 authentication:
@@ -53,7 +53,7 @@ authentication:
     environment:
     - EYEOS_DEVELOPMENT_MODE=false
     - EYEOS_RUN_SERVER_RESOLV=/open365/resolv.conf
-    image: open365experimental/eyeos-authentication:latest
+    image: open365/eyeos-authentication:latest
     ports:
     - 7946/tcp
     - 7946/udp
@@ -74,7 +74,7 @@ eyeosChat:
     environment:
     - EYEOS_DEVELOPMENT_MODE=false
     - EYEOS_RUN_SERVER_RESOLV=/open365/resolv.conf
-    image: open365experimental/eyeos-eyeos-chat:latest
+    image: open365/eyeos-eyeos-chat:latest
     ports:
     - 7946/tcp
     - 7946/udp
@@ -86,12 +86,12 @@ eyeosDesktop:
     env_file:
     - ../../envars/general.envars
     - ../../envars/desktop.envars
-    image: open365experimental/eyeos-eyedesktop:latest
+    image: open365/eyeos-eyedesktop:latest
 eyeosLogin:
     env_file:
     - ../../envars/general.envars
     - ../../envars/eyeoslogin.envars
-    image: open365experimental/eyeos-login:latest
+    image: open365/eyeos-login:latest
 filesCdnServer:
     dns:
     - 127.0.0.1
@@ -100,7 +100,7 @@ filesCdnServer:
     environment:
     - EYEOS_RUN_SERVER_RESOLV=/open365/resolv.conf
     - EYEOS_DEVELOPMENT_MODE=false
-    image: open365experimental/eyeos-files-cdn-server:latest
+    image: open365/eyeos-files-cdn-server:latest
     ports:
     - 7946/tcp
     - 7946/udp
@@ -122,7 +122,7 @@ httpRelayServer:
     environment:
     - EYEOS_DEVELOPMENT_MODE=false
     - EYEOS_RUN_SERVER_RESOLV=/open365/resolv.conf
-    image: open365experimental/eyeos-http-relay-server:latest
+    image: open365/eyeos-http-relay-server:latest
     ports:
     - 7946/tcp
     - 7946/udp
@@ -141,7 +141,7 @@ httpToBus:
     environment:
     - EYEOS_DEVELOPMENT_MODE=false
     - EYEOS_RUN_SERVER_RESOLV=/open365/resolv.conf
-    image: open365experimental/eyeos-httptobusserver:latest
+    image: open365/eyeos-httptobusserver:latest
     ports:
     - 7946/tcp
     - 7946/udp
@@ -160,7 +160,7 @@ jitsi:
     env_file:
     - ../../envars/general.envars
     - ../../envars/jitsi.envars
-    image: open365experimental/docker-jitsi:latest
+    image: open365/docker-jitsi:latest
     privileged: true
     restart: always
 ldap:
@@ -173,7 +173,7 @@ ldap:
     - EYEOS_RUN_SERVER_RESOLV=/open365/resolv.conf
     - LDAP_LOG_LEVEL=256
     - LOG_CONNECTION_MAX_RETRY=1000
-    image: open365experimental/ldap-discovery:latest
+    image: open365/ldap-discovery:latest
     ports:
     - 0.0.0.0:389:389
     - 7946/tcp
@@ -191,7 +191,7 @@ mailserver:
     - ../../envars/mailserver.envars
     environment:
     - EYEOS_DEVELOPMENT_MODE=false
-    image: open365experimental/mailserver:latest
+    image: open365/mailserver:latest
     ports:
     - 7946/tcp
     - 7946/udp
@@ -213,7 +213,7 @@ mongodb:
     - ../../envars/general.envars
     environment:
     - EYEOS_RUN_SERVER_RESOLV=/open365/resolv.conf
-    image: open365experimental/mongo-discovery:latest
+    image: open365/mongo-discovery:latest
     ports:
     - 0.0.0.0:27017:27017
     - 7946/tcp
@@ -229,7 +229,7 @@ mysql:
     env_file:
     - ../../envars/general.envars
     - ../../envars/mysql.envars
-    image: open365experimental/mysql-discovery:latest
+    image: open365/mysql-discovery:latest
     ports:
     - 7946/tcp
     - 7946/udp
@@ -241,10 +241,10 @@ mysql:
     - ##DATA_PATH##/mysql:/var/lib/mysql
 open365Mail:
     command: sleep infinity
-    image: open365experimental/open365-mail:latest
+    image: open365/open365-mail:latest
 open365Office:
     command: sleep infinity
-    image: open365experimental/open365-office:latest
+    image: open365/open365-office:latest
 pimServer:
     dns:
     - 127.0.0.1
@@ -253,7 +253,7 @@ pimServer:
     - ../../envars/pimserver.envars
     environment:
     - EYEOS_RUN_SERVER_RESOLV=/open365/resolv.conf
-    image: 'open365experimental/pim-server:latest'
+    image: 'open365/pim-server:latest'
     ports:
     - 0.0.0.0:5232:5232
     - 7946/tcp
@@ -271,7 +271,7 @@ presenceService:
     environment:
     - EYEOS_DEVELOPMENT_MODE=false
     - EYEOS_RUN_SERVER_RESOLV=/open365/resolv.conf
-    image: open365experimental/eyeos-presence-service:latest
+    image: open365/eyeos-presence-service:latest
     ports:
     - 7946/tcp
     - 7946/udp
@@ -291,7 +291,7 @@ principalService:
     environment:
     - EYEOS_RUN_SERVER_RESOLV=/open365/resolv.conf
     - EYEOS_DEVELOPMENT_MODE=false
-    image: open365experimental/eyeos-principalservice:latest
+    image: open365/eyeos-principalservice:latest
     ports:
     - 7946/tcp
     - 7946/udp
@@ -315,7 +315,7 @@ proxy:
     - EYEOS_DEVELOPMENT_MODE=false
     extra_hosts:
     - signup.service.consul:##docker0##
-    image: open365experimental/eyeos-proxy:latest
+    image: open365/eyeos-proxy:latest
     ports:
     - 7946/tcp
     - 7946/udp
@@ -354,7 +354,7 @@ rabbitmq:
     - EYEOS_RUN_SERVER_RESOLV=/open365/resolv.conf
     - DISCOVERY_HOSTS_FILE_PATH=/hosts/hosts.serf
     - RABBITMQ_AUTH_HOST=##docker0##
-    image: open365experimental/rabbitmq-discovery:latest
+    image: open365/rabbitmq-discovery:latest
     ports:
     - 7946/tcp
     - 7946/udp
@@ -375,7 +375,7 @@ rabbitmqAuth:
     environment:
     - EYEOS_RABBITMQ_AUTH_BACKEND_HTTP_BIND_ADDRESS=0.0.0.0
     - EYEOS_RUN_SERVER_RESOLV=/open365/resolv.conf
-    image: open365experimental/eyeos-rabbitmq-auth-backend-http:latest
+    image: open365/eyeos-rabbitmq-auth-backend-http:latest
     ports:
     - 7946/tcp
     - 7946/udp
@@ -394,7 +394,7 @@ redis:
     environment:
     - DOCKER_FIX_ISSUE_14203=true
     - EYEOS_RUN_SERVER_RESOLV=/open365/resolv.conf
-    image: open365experimental/redis-discovery:latest
+    image: open365/redis-discovery:latest
     ports:
     - 7946/tcp
     - 7946/udp
@@ -412,7 +412,7 @@ seafileServer:
     - ../../envars/mysql.envars
     environment:
     - EYEOS_RUN_SERVER_RESOLV=/open365/resolv.conf
-    image: open365experimental/docker-seafile:latest
+    image: open365/docker-seafile:latest
     ports:
     - 0.0.0.0:8000:8000
     - 0.0.0.0:8080:8080
@@ -434,7 +434,7 @@ staticCache:
     - ../../envars/staticCache.envars
     environment:
     - EYEOS_RUN_SERVER_RESOLV=/open365/resolv.conf
-    image: open365experimental/eyeos-static-cache:latest
+    image: open365/eyeos-static-cache:latest
     ports:
     - 7946/tcp
     - 7946/udp
@@ -454,7 +454,7 @@ sync:
     - ../../envars/seafileSync.envars
     environment:
     - EYEOS_RUN_SERVER_RESOLV=/open365/resolv.conf
-    image: open365experimental/eyeos-sync:latest
+    image: open365/eyeos-sync:latest
     privileged: true
     restart: always
     volumes:
@@ -471,7 +471,7 @@ userGuestStatusPollingService:
     environment:
     - EYEOS_RUN_SERVER_RESOLV=/open365/resolv.conf
     - EYEOS_DEVELOPMENT_MODE=false
-    image: open365experimental/eyeos-user-guest-status-polling-service:latest
+    image: open365/eyeos-user-guest-status-polling-service:latest
     ports:
     - 7946/tcp
     - 7946/udp
@@ -490,7 +490,7 @@ websockify:
     - ../../envars/websockify.envars
     environment:
     - EYEOS_RUN_SERVER_RESOLV=/open365/resolv.conf
-    image: open365experimental/eyeos-websockify:latest
+    image: open365/eyeos-websockify:latest
     ports:
     - 7946/tcp
     - 7946/udp
