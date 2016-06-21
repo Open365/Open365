@@ -58,7 +58,7 @@ This command will clean everything related with Open365.
 
 If you want to create new users run the following command:
 
-    $ sudo ./open365 user-create USERNAME --surname SURNAME --password PASS --email USER_EMAIL
+    $ sudo ./open365 user-create USERNAME --firstname FIRSTNAME --surname SURNAME --password PASS --email USER_EMAIL
 
 For more information about this command run:
 
