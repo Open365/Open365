@@ -1,4 +1,1 @@
-EYEOS_LDAP_URL=ldap://ldap.service.consul
-EYEOS_LDAP_DN=ou=People,dc=eyeos,dc=com
-EYEOS_LDAP_ADMIN_USER=cn=Manager,dc=eyeos,dc=com
-EYEOS_LDAP_ADMIN_PASSWORD=manager
+EYEOS_IMAP_HOST=##hostname##

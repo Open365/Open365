@@ -239,6 +239,9 @@ mysql:
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
     - ##DATA_PATH##/mysql:/var/lib/mysql
+open365Gimp:
+    command: sleep infinity
+    image: open365/open365-gimp:latest
 open365Mail:
     command: sleep infinity
     image: open365/open365-mail:latest

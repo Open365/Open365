@@ -29,6 +29,8 @@ class FileSystem:
         self._clean_files(paths.data + "/seafilesync")
         self.logger.info("Cleaning Seafile Raw Data.")
         self._clean_files(paths.data + "/seafileRawData")
+        self.logger.debug("Cleaning PIM Raw Data.")
+        self._clean_files(paths.data + "/pim")
 
     def _clean_files(self, path):
         if os.path.isdir(path):
@@ -48,3 +50,7 @@ class FileSystem:
             os.makedirs(base_path + directory, mode, exist_ok=True)
             self.logger.debug("Created " + base_path + directory)
         os.system("chmod 777 " + base_path + "mailbox")
+        os.chown(base_path + "mailbox",
+                 int(self.settings['email']['mailbox_owner_uid']),
+                 int(self.settings['email']['mailbox_owner_gid']))
+

@@ -101,13 +101,13 @@
       }
     },
     {
-      "appID": "filesync",
+      "appID": "gimp",
       "bigIcon": false,
       "smallIcon": false,
-      "name": "File sync",
-      "tooltip": "File sync",
-      "description": "File sync",
-      "url": "https://open365.io/download.html",
+      "name": "Gimp",
+      "tooltip": "Gimp",
+      "description": "Gimp",
+      "url": "/?EYETHEME_NAME=eyeos-cloud-app&app=%5B%22gimp%22%5D",
       "showInDesktop": false,
       "showInTab": true,
       "isVdi": false,
