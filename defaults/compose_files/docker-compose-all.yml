@@ -206,6 +206,9 @@ mailserver:
     - /var/run/docker.sock:/var/run/docker.sock
     - ##RESOLV_PATH##:/resolv.conf
     - ##RAW_FS_PATH##:/mnt/rawFS
+    links:
+    - mysql:mysql.service.consul
+    - ldap:ldap.service.consul
 mongodb:
     dns:
     - 127.0.0.1
