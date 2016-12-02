@@ -23,6 +23,7 @@ class WaitForEyeos:
                 raise TimeoutError("Wait timed out")
             try:
                 ip = self.settings.getServiceIp(self.entrypoint)
+                requests.packages.urllib3.disable_warnings()
                 requests.get('http://{0}'.format(ip), verify=False)
                 time.sleep(5)
                 self.logger.info("Waited for {0} seconds".format(int(now - starttime)))
